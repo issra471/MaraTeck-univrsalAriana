@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MaraTeck Dashboard - Accessible Analytics</title>
+  <link rel="stylesheet" href="styles/accessibility-dashboard.css">
+  <style>
+    /* Additional styles for demo charts */
+    .chart-placeholder {
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--card-bg) 0%, color-mix(in oklab, var(--card-bg) 90%, var(--primary) 10%) 100%);
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      color: var(--muted-text);
+      font-size: 1.1em;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--primary);
+      margin: 0.5rem 0;
+    }
+    .stat-label {
+      color: var(--muted-text);
+      font-size: 0.95em;
+      margin: 0;
+    }
+    .stat-change {
+      font-size: 0.9em;
+      margin-top: 0.5rem;
+    }
+    header {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    footer {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+      text-align: center;
+      color: var(--muted-text);
+    }
+  </style>
+</head>
+<body>
+  <!-- Skip link for keyboard users -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Header with navigation -->
+  <header role="banner">
+    <h1>MaraTeck Dashboard</h1>
+    <nav aria-label="Primary navigation">
+      <div class="navbar" role="menubar">
+        <a href="#main" role="menuitem" tabindex="0">Dashboard</a>
+        <a href="#analytics" role="menuitem" tabindex="0">Analytics</a>
+        <a href="#reports" role="menuitem" tabindex="0">Reports</a>
+        <a href="#settings" role="menuitem" tabindex="0">Settings</a>
+        <button id="contrastToggle" class="btn" aria-label="Toggle high contrast mode">
+          <span aria-hidden="true">🌓</span> Contrast
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main content area -->
+  <main id="main">
+    <section aria-labelledby="overview-heading">
+      <h2 id="overview-heading">Dashboard Overview</h2>
+      <p>Welcome to the accessible MaraTeck dashboard. All features are keyboard accessible and screen reader friendly.</p>
+      
+      <!-- Stats cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <p class="stat-label">Total Users</p>
+          <p class="stat-value" aria-label="Total users: 12,543">12,543</p>
+          <p class="stat-change badge badge-success" aria-label="Increased by 8.2%">↑ 8.2%</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-label">Active Sessions</p>
+          <p class="stat-value" aria-label="Active sessions: 1,234">1,234</p>
+          <p class="stat-change badge badge-success" aria-label="Increased by 5.1%">↑ 5.1%</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-label">Response Time</p>
+          <p class="stat-value" aria-label="Response time: 245 milliseconds">245ms</p>
+          <p class="stat-change badge badge-danger" aria-label="Increased by 3.4%">↑ 3.4%</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-label">Success Rate</p>
+          <p class="stat-value" aria-label="Success rate: 99.7%">99.7%</p>
+          <p class="stat-change badge badge-success" aria-label="Increased by 0.2%">↑ 0.2%</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard grid with charts -->
+    <div class="dashboard-grid">
+      <!-- Main chart area -->
+      <section aria-labelledby="sales-heading">
+        <div class="card chart-container">
+          <h3 id="sales-heading">Sales Performance</h3>
+          <div class="chart-placeholder" role="img" aria-label="Sales performance chart placeholder">
+            Chart Area (Chart library would render here)
+          </div>
+          <p class="chart-description">
+            Sales increased 12% in Q4 2025, with highest growth in Region A (25%) and Region B (18%). 
+            Region C showed stable performance at 3% growth.
+          </p>
+          <div class="chart-toggle">
+            <button data-target="sales-table" aria-expanded="false">Show table view</button>
+          </div>
+          <table id="sales-table" class="table" hidden aria-label="Sales data by region">
+            <caption>Quarterly sales data by region</caption>
+            <thead>
+              <tr>
+                <th scope="col">Region</th>
+                <th scope="col">Q3 2025</th>
+                <th scope="col">Q4 2025</th>
+                <th scope="col">Change</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Region A</th>
+                <td>$2,400,000</td>
+                <td>$3,000,000</td>
+                <td class="badge badge-success">+25%</td>
+              </tr>
+              <tr>
+                <th scope="row">Region B</th>
+                <td>$1,700,000</td>
+                <td>$2,006,000</td>
+                <td class="badge badge-success">+18%</td>
+              </tr>
+              <tr>
+                <th scope="row">Region C</th>
+                <td>$1,500,000</td>
+                <td>$1,545,000</td>
+                <td class="badge badge-success">+3%</td>
+              </tr>
+              <tr>
+                <th scope="row">Total</th>
+                <td>$5,600,000</td>
+                <td>$6,551,000</td>
+                <td class="badge badge-success">+17%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card chart-container" style="margin-top: 1rem;">
+          <h3 id="traffic-heading">User Traffic Trends</h3>
+          <div class="chart-placeholder" role="img" aria-label="User traffic trends chart placeholder">
+            Chart Area (Chart library would render here)
+          </div>
+          <p class="chart-description">
+            User traffic shows consistent growth with peaks during business hours (9 AM - 5 PM EST). 
+            Mobile traffic now accounts for 62% of all sessions.
+          </p>
+          <div class="chart-toggle">
+            <button data-target="traffic-table" aria-expanded="false">Show table view</button>
+          </div>
+          <table id="traffic-table" class="table" hidden aria-label="Traffic data by device type">
+            <caption>User traffic by device type and time</caption>
+            <thead>
+              <tr>
+                <th scope="col">Device Type</th>
+                <th scope="col">Morning (6-12)</th>
+                <th scope="col">Afternoon (12-18)</th>
+                <th scope="col">Evening (18-24)</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Mobile</th>
+                <td>12,450</td>
+                <td>18,230</td>
+                <td>9,876</td>
+                <td>40,556</td>
+              </tr>
+              <tr>
+                <th scope="row">Desktop</th>
+                <td>8,120</td>
+                <td>14,560</td>
+                <td>2,345</td>
+                <td>25,025</td>
+              </tr>
+              <tr>
+                <th scope="row">Tablet</th>
+                <td>1,234</td>
+                <td>2,456</td>
+                <td>890</td>
+                <td>4,580</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Sidebar with filters and actions -->
+      <aside aria-label="Filters and quick actions">
+        <div class="card">
+          <h3>Filters</h3>
+          <form>
+            <div style="margin-bottom: 1rem;">
+              <label for="date-range">Date Range</label>
+              <select id="date-range" name="date-range">
+                <option value="7d">Last 7 days</option>
+                <option value="30d" selected>Last 30 days</option>
+                <option value="90d">Last 90 days</option>
+                <option value="1y">Last year</option>
+              </select>
+            </div>
+            <div style="margin-bottom: 1rem;">
+              <label for="region">Region</label>
+              <select id="region" name="region">
+                <option value="all" selected>All Regions</option>
+                <option value="a">Region A</option>
+                <option value="b">Region B</option>
+                <option value="c">Region C</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Apply Filters</button>
+          </form>
+        </div>
+
+        <div class="card" style="margin-top: 1rem;">
+          <h3>Quick Actions</h3>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <button class="btn" aria-label="Export data to CSV">
+              <span aria-hidden="true">📊</span> Export Data
+            </button>
+            <button class="btn" aria-label="Generate PDF report">
+              <span aria-hidden="true">📄</span> Generate Report
+            </button>
+            <button class="btn" aria-label="Schedule email report">
+              <span aria-hidden="true">📧</span> Schedule Email
+            </button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 1rem;">
+          <h3>System Status</h3>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 0.5rem;">
+              <span class="badge badge-success">Active</span> API Server
+            </li>
+            <li style="margin-bottom: 0.5rem;">
+              <span class="badge badge-success">Active</span> Database
+            </li>
+            <li style="margin-bottom: 0.5rem;">
+              <span class="badge badge-warning">Warning</span> Cache Server
+            </li>
+            <li>
+              <span class="badge badge-success">Active</span> CDN
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Data table section -->
+    <section aria-labelledby="recent-heading" style="margin-top: 2rem;">
+      <div class="card">
+        <h3 id="recent-heading">Recent Transactions</h3>
+        <p class="help-text">Use arrow keys to navigate the table. Press Tab to move between cells.</p>
+        <table class="table" aria-label="Recent transactions">
+          <caption class="sr-only">List of recent transactions with ID, date, amount, and status</caption>
+          <thead>
+            <tr>
+              <th scope="col">Transaction ID</th>
+              <th scope="col">Date</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Status</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">TRX-2025-001</th>
+              <td>2025-02-07</td>
+              <td>$1,250.00</td>
+              <td><span class="badge badge-success">Completed</span></td>
+              <td><button class="btn" style="min-width: auto; padding: 0.5rem;" aria-label="View transaction TRX-2025-001">View</button></td>
+            </tr>
+            <tr>
+              <th scope="row">TRX-2025-002</th>
+              <td>2025-02-07</td>
+              <td>$875.50</td>
+              <td><span class="badge badge-warning">Pending</span></td>
+              <td><button class="btn" style="min-width: auto; padding: 0.5rem;" aria-label="View transaction TRX-2025-002">View</button></td>
+            </tr>
+            <tr>
+              <th scope="row">TRX-2025-003</th>
+              <td>2025-02-06</td>
+              <td>$2,100.00</td>
+              <td><span class="badge badge-success">Completed</span></td>
+              <td><button class="btn" style="min-width: auto; padding: 0.5rem;" aria-label="View transaction TRX-2025-003">View</button></td>
+            </tr>
+            <tr>
+              <th scope="row">TRX-2025-004</th>
+              <td>2025-02-06</td>
+              <td>$450.00</td>
+              <td><span class="badge badge-danger">Failed</span></td>
+              <td><button class="btn" style="min-width: auto; padding: 0.5rem;" aria-label="View transaction TRX-2025-004">View</button></td>
+            </tr>
+            <tr>
+              <th scope="row">TRX-2025-005</th>
+              <td>2025-02-05</td>
+              <td>$3,750.25</td>
+              <td><span class="badge badge-success">Completed</span></td>
+              <td><button class="btn" style="min-width: auto; padding: 0.5rem;" aria-label="View transaction TRX-2025-005">View</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <p>&copy; 2025 MaraTeck Universal Ariana. All rights reserved.</p>
+    <p style="font-size: 0.9em;">
+      Accessibility features: 
+      <a href="docs/INTEGRATION.md">Integration Guide</a> | 
+      <a href="#main">Back to top</a>
+    </p>
+  </footer>
+
+  <!-- Live region for screen reader announcements -->
+  <div id="live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Load accessibility JavaScript -->
+  <script src="scripts/accessibility-dashboard.js" defer></script>
+  
+  <!-- Demo: High contrast toggle functionality -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const contrastBtn = document.getElementById('contrastToggle');
+      if (contrastBtn) {
+        contrastBtn.addEventListener('click', () => {
+          const isHigh = document.documentElement.hasAttribute('data-contrast');
+          if (isHigh) {
+            document.documentElement.removeAttribute('data-contrast');
+            contrastBtn.setAttribute('aria-pressed', 'false');
+          } else {
+            document.documentElement.setAttribute('data-contrast', 'high');
+            contrastBtn.setAttribute('aria-pressed', 'true');
+          }
+        });
+        contrastBtn.setAttribute('aria-pressed', 'false');
+      }
+
+      // Simulate chart loading with error handling
+      console.log('Dashboard loaded successfully');
+      console.log('All charts initialized with valid data');
+      console.log('Accessibility features enabled');
+    });
+  </script>
+</body>
+</html>
