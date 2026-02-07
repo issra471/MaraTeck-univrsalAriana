@@ -1,0 +1,97 @@
+/* ==========================================
+   ACCESSIBILITY UTILITIES
+   ========================================== */
+
+/* Screen Reader Only Class */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Skip Link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: white;
+    padding: 8px;
+    z-index: 9999;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* High Contrast Mode Overrides */
+body.high-contrast {
+    --primary-color: #00FFFF;
+    /* Cyan */
+    --primary-hover: #00CCCC;
+    --secondary-color: #FFFF00;
+    /* Yellow */
+    --accent-color: #FF00FF;
+    /* Magenta */
+    --accent-hover: #CC00CC;
+
+    --text-main: #FFFFFF;
+    --text-body: #FFFFFF;
+    --text-light: #DDDDDD;
+    --gray-text: #CCCCCC;
+
+    --bg-body: #000000;
+    --bg-card: #000000;
+    --bg-surface: #000000;
+
+    --gradient-primary: none;
+    --gradient-accent: none;
+    --gradient-overlay: none;
+    --gradient-soft-tint: none;
+
+    /* Borders for visibility */
+    --border-contrast: 2px solid #FFFFFF;
+}
+
+body.high-contrast .glass-card,
+body.high-contrast .navbar,
+body.high-contrast .hero-badge,
+body.high-contrast .case-card,
+body.high-contrast .category-card {
+    background: #000000 !important;
+    border: 2px solid #FFFFFF !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+body.high-contrast .text-gradient,
+body.high-contrast .section-title,
+body.high-contrast .hero-title span {
+    background: none !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    color: #FFFFFF !important;
+}
+
+body.high-contrast .btn-primary,
+body.high-contrast .btn-donate {
+    background: #000000 !important;
+    border: 2px solid #00FFFF !important;
+    color: #00FFFF !important;
+}
+
+body.high-contrast .btn-primary:hover,
+body.high-contrast .btn-donate:hover {
+    background: #00FFFF !important;
+    color: #000000 !important;
+}
+
+body.high-contrast a {
+    text-decoration: underline;
+}
